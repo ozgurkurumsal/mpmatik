@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mpmatik/pages/palette.dart';
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({

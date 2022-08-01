@@ -6,7 +6,7 @@ class Menuler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> entries = <String>['A', 'B', 'C'];
+    // final List<String> entries = <String>['A', 'B', 'C'];
     return ListView(
       // padding: const EdgeInsets.all(8),
       // itemCount: entries.length,

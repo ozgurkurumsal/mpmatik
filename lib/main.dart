@@ -6,6 +6,8 @@ import 'model/login_model.dart';
 import 'service/login_service.dart';
 
 void main() {
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 

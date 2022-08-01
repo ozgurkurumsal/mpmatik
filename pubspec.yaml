@@ -37,7 +37,7 @@ dependencies:
   http: ^0.13.4
   shared_preferences: ^2.0.15
   font_awesome_flutter: ^10.1.0
-  flutter_native_splash: ^2.2.6
+  flutter_native_splash: ^2.2.7
 
 # flutter_native_splash:
 #   color: "#32b3a4"
@@ -45,6 +45,26 @@ dependencies:
 #   android: true
 #   ios: true
 #   fullscreen : true
+
+
+flutter_native_splash:
+  # color: "#FFCC00"
+  background_image: assets/images/login_bg.png
+  background_image_web: assets/images/login_bg.png
+                    #  assets/images/login_bg.png
+  # background_image_web: assets/images/login_bg.png
+  # background_image_web: "assets/background-web.png"
+  # fullscreen: true
+  # android_gravity: fill
+  android : true
+  ios : true
+  web: true
+  # fullscreen : true
+  #web_image_mode : stretch
+
+  # image_web: "assets/splash.png"
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
 
 
 
@@ -59,23 +79,6 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
-
-flutter_native_splash:
-  # color: "#FFCC00"
-  background_image: "assets/images/splash.png"
-                    #  assets/images/login_bg.png
-  # background_image_web: assets/images/login_bg.png
-  # background_image_web: "assets/background-web.png"
-  # fullscreen: true
-  # android_gravity: fill
-  android : true
-  ios : true
-  web: true
-  #web_image_mode : stretch
-  background_image_web: "assets/images/login_bg.png"
-  image_web: "assets/splash.png"
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:

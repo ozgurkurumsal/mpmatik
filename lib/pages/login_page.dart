@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mpmatik/pages/palette.dart';
-import 'package:mpmatik/pages/password-input.dart';
+import 'package:mpmatik/pages/password_input.dart';
 import 'package:mpmatik/pages/rounded_button.dart';
 import 'package:mpmatik/pages/text_input.dart';
 import '../model/login_model.dart';
-import '../service/login_service.dart';
 import 'background_image.dart';
-import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -49,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 90,
                   ),
                   Container(
@@ -58,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                          children: const [
                             TextInput(
                               icon: FontAwesomeIcons.solidEnvelope,
                               hint: 'Email',
