@@ -34,11 +34,18 @@ class TextInput extends StatelessWidget {
               border: InputBorder.none,
               hintText: hint,
               prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Icon(
-                  icon,
-                  color: Colors.green,
-                  size: 25,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Container(
+                  width: 50,
+                  margin: const EdgeInsets.only(right: 5),
+                  decoration: const BoxDecoration(
+                    border: Border(right: BorderSide(color: Colors.green)),
+                  ),
+                  child: Icon(
+                    icon,
+                    color: Colors.green,
+                    size: 25,
+                  ),
                 ),
               ),
               hintStyle: kBodyText,

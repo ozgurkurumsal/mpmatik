@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:mpmatik/pages/palette.dart';
 
 class PasswordInput extends StatelessWidget {
-  const PasswordInput({
-    Key? key,
-    @required this.icon,
-    @required this.hint,
-    @required this.inputAction,
-  }) : super(key: key);
+  const PasswordInput(
+      {Key? key,
+      @required this.icon,
+      @required this.hint,
+      @required this.inputAction,
+      this.passwordcontroller})
+      : super(key: key);
 
   final IconData? icon;
   final String? hint;
   final TextInputAction? inputAction;
+  final TextEditingController? passwordcontroller;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class PasswordInput extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
         child: TextField(
+          controller: passwordcontroller,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 11),
             border: InputBorder.none,
