@@ -16,6 +16,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool hidePassword = true;
   bool isApiCallProcess = false;
+  final emailcontroller = TextEditingController();
+  // TextEditingController? emailcontroller;
+
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
   late LoginRequestModel loginRequestModel;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -55,19 +58,20 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
+                          children: [
                             TextInput(
                               icon: FontAwesomeIcons.solidEnvelope,
                               hint: 'Email',
                               inputType: TextInputType.emailAddress,
                               inputAction: TextInputAction.next,
+                              emailcontroller: emailcontroller,
                             ),
-                            PasswordInput(
+                            const PasswordInput(
                               icon: FontAwesomeIcons.lock,
                               hint: 'Şifre',
                               inputAction: TextInputAction.done,
                             ),
-                            Text(
+                            const Text(
                               'Şifremi Unuttum',
                               style: TextStyle(color: Colors.white),
                               // style: kBodyText,
@@ -75,13 +79,21 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                         Column(
-                          children: const [
-                            SizedBox(
+                          children: [
+                            const SizedBox(
                               height: 30,
                             ),
-                            RoundedButton(
+                            const RoundedButton(
                               buttonText: 'GİRİŞ YAP',
                             ),
+                            ElevatedButton(
+                              onPressed: () {
+                                debugPrint('object');
+                                debugPrint(emailcontroller.text);
+                              },
+                              child: const Text(
+                                  'ElevatedButton with custom foreground/background'),
+                            )
                           ],
                         )
                       ],

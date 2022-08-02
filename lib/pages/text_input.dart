@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:mpmatik/pages/palette.dart';
 
 class TextInput extends StatelessWidget {
-  const TextInput({
-    Key? key,
-    @required this.icon,
-    @required this.hint,
-    this.inputType,
-    this.inputAction,
-  }) : super(key: key);
+  const TextInput(
+      {Key? key,
+      @required this.icon,
+      @required this.hint,
+      this.inputType,
+      this.inputAction,
+      this.emailcontroller})
+      : super(key: key);
 
   final IconData? icon;
   final String? hint;
   final TextInputType? inputType;
   final TextInputAction? inputAction;
+  final TextEditingController? emailcontroller;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class TextInput extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
         child: TextField(
+            controller: emailcontroller,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 11),
               border: InputBorder.none,
