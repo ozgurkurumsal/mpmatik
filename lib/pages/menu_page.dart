@@ -7,96 +7,109 @@ class Menuler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final List<String> entries = <String>['A', 'B', 'C'];
-    return ListView(
-      // padding: const EdgeInsets.all(8),
-      // itemCount: entries.length,
-      // itemBuilder: (BuildContext context, int index) {
-      children: const [
-        Card(
-          child: ListTile(
-            title: Text('Ek Limit Talebi'),
-            subtitle: Text('Altyazılar'),
+    return Scaffold(
+      backgroundColor: const Color(0xfff0f1f5),
+      body: ListView(
+        // padding: const EdgeInsets.all(8),
+        // itemCount: entries.length,
+        // itemBuilder: (BuildContext context, int index) {
+        children: const [
+          SizedBox(
+            height: 20,
+          ),
+          ListTile(
+            title: Text(
+              'Ek Limit Talebi',
+              style: TextStyle(color: Color(0xff3bbd00)),
+            ),
+            // subtitle: Text('Altyazılar'),
             leading: FaIcon(
               FontAwesomeIcons.batteryFull,
-              size: 30,
-              color: Colors.blue,
+              size: 25,
+              color: Color(0xff3bbd00),
             ),
             trailing: Icon(Icons.arrow_right),
           ),
-        ),
-        Card(
-          child: ListTile(
-            title: Text('Tasarrufum'),
-            subtitle: Text('Altyazılar'),
+          ListTile(
+            title: Text(
+              'Tasarrufum',
+              style: TextStyle(color: Color(0xff3bbd00)),
+            ),
+            // subtitle: Text('Altyazılar'),
             leading: FaIcon(
               FontAwesomeIcons.turkishLiraSign,
-              size: 30,
-              color: Colors.blue,
+              size: 25,
+              color: Color(0xff3bbd00),
             ),
             trailing: Icon(Icons.arrow_right),
           ),
-        ),
-        Card(
-          child: ListTile(
-            title: Text('Aylık Dağılımım'),
-            subtitle: Text('Altyazılar'),
+          ListTile(
+            title: Text(
+              'Aylık Dağılımım',
+              style: TextStyle(color: Color(0xff3bbd00)),
+            ),
+            // subtitle: Text('Altyazılar'),
             leading: FaIcon(
               FontAwesomeIcons.chartPie,
-              size: 30,
-              color: Colors.blue,
+              size: 25,
+              color: Color(0xff3bbd00),
             ),
             trailing: Icon(Icons.arrow_right),
           ),
-        ),
-        Card(
-          child: ListTile(
-            title: Text('Faturalarım'),
-            subtitle: Text('Altyazılar'),
+          ListTile(
+            title: Text(
+              'Faturalarım',
+              style: TextStyle(color: Color(0xff3bbd00)),
+            ),
+            // subtitle: Text('Altyazılar'),
             leading: FaIcon(
               FontAwesomeIcons.fileInvoice,
-              size: 30,
-              color: Colors.blue,
+              size: 25,
+              color: Color(0xff3bbd00),
             ),
             trailing: Icon(Icons.arrow_right),
           ),
-        ),
-        Card(
-          child: ListTile(
-            title: Text('Ödeme Yap'),
-            subtitle: Text('Altyazılar'),
+          ListTile(
+            title: Text(
+              'Ödeme Yap',
+              style: TextStyle(color: Color(0xff3bbd00)),
+            ),
+            // subtitle: Text('Altyazılar'),
             leading: FaIcon(
               FontAwesomeIcons.creditCard,
-              size: 30,
-              color: Colors.blue,
+              size: 25,
+              color: Color(0xff3bbd00),
             ),
             trailing: Icon(Icons.arrow_right),
           ),
-        ),
-        Card(
-          child: ListTile(
-            title: Text('Ödeme Hareketlerim'),
-            subtitle: Text('Altyazılar'),
+          ListTile(
+            title: Text(
+              'Ödeme Hareketlerim',
+              style: TextStyle(color: Color(0xff3bbd00)),
+            ),
+            // subtitle: Text('Altyazılar'),
             leading: FaIcon(
               FontAwesomeIcons.clipboardList,
-              size: 30,
-              color: Colors.blue,
+              size: 25,
+              color: Color(0xff3bbd00),
             ),
             trailing: Icon(Icons.arrow_right),
           ),
-        ),
-        Card(
-          child: ListTile(
-            title: Text('Taleplerim'),
-            subtitle: Text('Altyazılar'),
+          ListTile(
+            title: Text(
+              'Taleplerim',
+              style: TextStyle(color: Color(0xff3bbd00)),
+            ),
+            // subtitle: Text('Altyazılar'),
             leading: FaIcon(
               FontAwesomeIcons.commentDots,
-              size: 30,
-              color: Colors.blue,
+              size: 25,
+              color: Color(0xff3bbd00),
             ),
             trailing: Icon(Icons.arrow_right),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

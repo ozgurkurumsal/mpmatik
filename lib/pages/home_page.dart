@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   // int? _departmentCode;
   String? _cariUnvan;
@@ -28,16 +28,19 @@ class _HomePageState extends State<HomePage> {
     Menuler(),
   ];
 
-  void _onItemTapped(int index) {
-    if (index == 2) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const Menuler()));
-    }
+  int _page = 2;
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  // void _onItemTapped(int index) {
+  //   if (index == 2) {
+  //     Navigator.push(
+  //         context, MaterialPageRoute(builder: (context) => const Menuler()));
+  //   }
+
+  //   setState(() {
+  //     // _selectedIndex = index;
+  //   });
+  // }
 
   Future<void> getCode() async {
     final SharedPreferences prefs = await _prefs;
@@ -64,128 +67,212 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: const Color(0xff009901),
-          toolbarHeight: 65,
-          centerTitle: true,
-          title: const Text('..')
-          // Image.network("https://mptasitmatik.com/admin/myimg/logoyazi.png"),
-          // title: Text(unvan["cariUnvan"] ?? 'Boş'),
+        backgroundColor: Colors.black,
+        toolbarHeight: 65,
+        // centerTitle: true,
+        // leadingWidth: 650,
+        // automaticallyImplyLeading: false,
+        title: SizedBox(
+          width: 200,
+          child: Image.asset(
+            'assets/images/login_logo_trimmed.png',
+            fit: BoxFit.contain,
+            // width: 300,
+            // height: 200,
           ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Buraya Logo vb koyabiliriz',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.message),
-              title: Text('Messages'),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Profile'),
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-            ),
-          ],
         ),
+        // Image.network("https://mptasitmatik.com/admin/myimg/logoyazi.png"),
+        // title: Text(unvan["cariUnvan"] ?? 'Boş'),
       ),
-      body: menuler[_selectedIndex],
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff03dac6),
-        foregroundColor: Colors.black,
-        // shape: const Text('Deneme'),
+      // drawer: Drawer(
+      //   child: ListView(
+      //     padding: EdgeInsets.zero,
+      //     children: const <Widget>[
+      //       DrawerHeader(
+      //         decoration: BoxDecoration(
+      //           color: Colors.blue,
+      //         ),
+      //         child: Text(
+      //           'Buraya Logo vb koyabiliriz',
+      //           style: TextStyle(
+      //             color: Colors.white,
+      //             fontSize: 24,
+      //           ),
+      //         ),
+      //       ),
+      //       ListTile(
+      //         leading: Icon(Icons.message),
+      //         title: Text('Messages'),
+      //       ),
+      //       ListTile(
+      //         leading: Icon(Icons.account_circle),
+      //         title: Text('Profile'),
+      //       ),
+      //       ListTile(
+      //         leading: Icon(Icons.settings),
+      //         title: Text('Settings'),
+      //       ),
+      //     ],
+      //   ),
+      // ),
+      body: menuler[_page],
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: Align(
+      //   alignment: const Alignment(0, 0.92),
+      //   child: Container(
+      //     decoration: BoxDecoration(
+      //       // color: Colors.black,
+      //       borderRadius: BorderRadius.all(Radius.circular(50)),
+      //       boxShadow: [
+      //         // color: Colors.white,
+      //         BoxShadow(
+      //           color: Colors.black54,
+      //           // blurRadius: 25.0, // soften the shadow
+      //           spreadRadius: 5.0, //extend the shadow
+      //           offset: Offset(
+      //             0, // Move to right 10  horizontally
+      //             0, // Move to bottom 10 Vertically
+      //           ),
+      //         )
+      //       ],
+      //     ),
+      //     width: 65,
+      //     height: 65,
+      //     child: FloatingActionButton(
+      //       // shape: Shap,
+      //       backgroundColor: Colors.black,
+      //       // foregroundColor: Colors.black,
+      //       // shape: const Text('Deneme'),
 
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              shape: const RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(20))),
-              builder: (context) {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ListTile(
-                      leading: const Icon(Icons.photo),
-                      title: const Text('Photo'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.music_note),
-                      title: const Text('Music'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.videocam),
-                      title: const Text('Video'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.share),
-                      title: const Text('Share'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                );
-              });
-          // Respond to button press
+      //       onPressed: () {
+      //         showModalBottomSheet(
+      //             context: context,
+      //             shape: const RoundedRectangleBorder(
+      //                 borderRadius:
+      //                     BorderRadius.vertical(top: Radius.circular(20))),
+      //             builder: (context) {
+      //               return Column(
+      //                 mainAxisSize: MainAxisSize.min,
+      //                 children: <Widget>[
+      //                   ListTile(
+      //                     leading: const Icon(Icons.photo),
+      //                     title: const Text('Photo'),
+      //                     onTap: () {
+      //                       Navigator.pop(context);
+      //                     },
+      //                   ),
+      //                   ListTile(
+      //                     leading: const Icon(Icons.music_note),
+      //                     title: const Text('Music'),
+      //                     onTap: () {
+      //                       Navigator.pop(context);
+      //                     },
+      //                   ),
+      //                   ListTile(
+      //                     leading: const Icon(Icons.videocam),
+      //                     title: const Text('Video'),
+      //                     onTap: () {
+      //                       Navigator.pop(context);
+      //                     },
+      //                   ),
+      //                   ListTile(
+      //                     leading: const Icon(Icons.share),
+      //                     title: const Text('Share'),
+      //                     onTap: () {
+      //                       Navigator.pop(context);
+      //                     },
+      //                   ),
+      //                 ],
+      //               );
+      //             });
+      //         // Respond to button press
+      //       },
+      //       child: Container(
+      //         height: 70,
+      //         width: 70,
+      //         decoration: BoxDecoration(
+      //           color: Colors.black,
+      //           borderRadius: BorderRadius.all(Radius.circular(50)),
+      //           boxShadow: [
+      //             BoxShadow(
+      //               color: Colors.black.withOpacity(0.2),
+      //               spreadRadius: 3,
+      //               blurRadius: 2,
+      //               offset: Offset(0, 4),
+      //             ),
+      //           ],
+      //         ),
+      //         child: Icon(Icons.credit_card),
+      //       ),
+      //     ),
+      //   ),
+      // ),
+      bottomNavigationBar: CurvedNavigationBar(
+        key: _bottomNavigationKey,
+        index: 2,
+        height: 60.0,
+        items: const [
+          Icon(Icons.home, size: 30),
+          FaIcon(
+            FontAwesomeIcons.gasPump,
+            size: 20,
+            // color: Color(0xff3bbd00),
+          ),
+          // Icon(Icons., size: 30),
+
+          Icon(Icons.credit_card, size: 30),
+          Icon(Icons.perm_identity, size: 30),
+          Icon(Icons.list, size: 30),
+        ],
+        color: Colors.white,
+        buttonBackgroundColor: Colors.white,
+        backgroundColor: const Color(0xfff0f1f5),
+        animationCurve: Curves.easeInOut,
+        animationDuration: const Duration(milliseconds: 600),
+        onTap: (index) {
+          setState(() {
+            _page = index;
+          });
         },
-        child: const Icon(Icons.add),
+        letIndexChange: (index) => true,
       ),
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          splashFactory: NoSplash.splashFactory,
-          hoverColor: Colors.transparent,
-        ),
-        child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: _selectedIndex,
-            selectedItemColor: Colors.blueAccent[800],
-            unselectedItemColor: Colors.redAccent,
-            onTap: _onItemTapped,
+      // bottomNavigationBar: Theme(
+      //   data: Theme.of(context).copyWith(
+      //     splashColor: Colors.transparent,
+      //     highlightColor: Colors.transparent,
+      //     splashFactory: NoSplash.splashFactory,
+      //     hoverColor: Colors.transparent,
+      //   ),
+      //   child: BottomNavigationBar(
+      //       type: BottomNavigationBarType.fixed,
+      //       currentIndex: _selectedIndex,
+      //       selectedItemColor: Colors.blueAccent[800],
+      //       unselectedItemColor: Colors.redAccent,
+      //       onTap: _onItemTapped,
 
-            // showSelectedLabels: false,
-            // showUnselectedLabels: false,
+      //       // showSelectedLabels: false,
+      //       // showUnselectedLabels: false,
 
-            // backgroundColor: Colors.amber,
-            items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home), label: 'Anasayfa'),
-              BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Deneme'),
+      //       // backgroundColor: Colors.amber,
+      //       items: const [
+      //         BottomNavigationBarItem(
+      //             icon: Icon(Icons.home), label: 'Anasayfa'),
+      //         BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Deneme'),
 
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.add), label: 'Ödeme Yap'),
+      //         BottomNavigationBarItem(
+      //             icon: Padding(
+      //               padding: EdgeInsets.only(top: 8.0),
+      //               child: Text(' '),
+      //             ),
+      //             label: 'Ödeme Yap'),
 
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.add), label: 'İstasyonlar'),
-              BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Menü'),
-              // BottomNavigationBarItem(icon: Icon(Icons.add), label: 'İson'),
-            ]),
-      ),
+      //         BottomNavigationBarItem(
+      //             icon: Icon(Icons.add), label: 'İstasyonlar'),
+      //         BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Menü'),
+      //         // BottomNavigationBarItem(icon: Icon(Icons.add), label: 'İson'),
+      //       ]),
+
+      // ),
     );
   }
 

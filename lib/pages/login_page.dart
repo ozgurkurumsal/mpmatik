@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mpmatik/pages/password_input.dart';
 import 'package:mpmatik/pages/text_input.dart';
 import '../model/login_model.dart';
+import '../service/login_service.dart';
 import 'background_image.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,8 +18,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool hidePassword = true;
   bool isApiCallProcess = false;
-  final emailcontroller = TextEditingController();
-  final passwordcontroller = TextEditingController();
+  final emailcontroller = TextEditingController(text: 'MP64F81');
+  final passwordcontroller = TextEditingController(text: '12345');
   // TextEditingController? emailcontroller;
 
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
@@ -26,6 +29,22 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     loginRequestModel = LoginRequestModel();
+    // initialization();
+  }
+
+  void initialization() async {
+    // This is where you can initialize the resources needed by your app while
+    // the splash screen is displayed.  Remove the following example because
+    // delaying the user experience is a bad design practice!
+    // ignore_for_file: avoid_print
+    print('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 1...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('go!');
+    FlutterNativeSplash.remove();
   }
 
   @override
@@ -102,9 +121,54 @@ class _LoginPageState extends State<LoginPage> {
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold))),
                               onPressed: () {
-                                // debugPrint('object');
-                                debugPrint(emailcontroller.text);
-                                debugPrint(passwordcontroller.text);
+                                loginRequestModel.username =
+                                    emailcontroller.text;
+                                loginRequestModel.password =
+                                    passwordcontroller.text;
+                                // if (validateAndSave()) {
+                                // print(loginRequestModel.toJson());
+
+                                setState(() {
+                                  isApiCallProcess = true;
+                                });
+
+                                LoginService apiService = LoginService();
+                                apiService
+                                    .login(loginRequestModel)
+                                    .then((value) {
+                                  // ignore: unnecessary_null_comparison
+                                  if (value != null) {
+                                    setState(() {
+                                      isApiCallProcess = false;
+                                    });
+
+                                    if (value.departmentCode != 0) {
+                                      // ScaffoldMessenger.of(context).showSnackBar(
+                                      //     const SnackBar(
+                                      //         content: Text(
+                                      //             "Enter somethong here to display on snackbar")));
+
+                                      // SnackBar(
+                                      //     content: Text("Login Successful"));
+                                      // scaffoldKey.currentState!
+                                      //     .showSnackBar(snackBar);
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const HomePage()));
+                                    } else {
+                                      // final snackBar =
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content: Text(value.error!)));
+                                      //     SnackBar(content: Text(value.error!));
+                                      // scaffoldKey.currentState!
+                                      //     .showSnackBar(snackBar);
+                                    }
+                                  }
+                                });
+                                // }
                               },
                               child: const Text('GİRİŞ YAP'),
                             )
@@ -121,4 +185,13 @@ class _LoginPageState extends State<LoginPage> {
       ],
     );
   }
+
+  // bool validateAndSave() {
+  //   final form = globalFormKey.currentState;
+  //   if (form!.validate()) {
+  //     form.save();
+  //     return true;
+  //   }
+  //   return false;
+  // }
 }

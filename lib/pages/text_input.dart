@@ -29,6 +29,7 @@ class TextInput extends StatelessWidget {
         ),
         child: TextField(
             controller: emailcontroller,
+            onSubmitted: (value) => debugPrint('on saved'),
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 11),
               border: InputBorder.none,

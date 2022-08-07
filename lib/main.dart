@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:mpmatik/pages/home_page.dart';
 import 'package:mpmatik/pages/login_page.dart';
 //import 'package:mpmatik/pages/login_page.dart';
@@ -22,6 +23,10 @@ class MyApp extends StatelessWidget {
       title: 'MPMatik',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(color: Colors.black),
+          color: Colors.deepPurpleAccent, //<-- SEE HERE
+        ),
       ),
       home: const LoginPage(),
       // const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -50,10 +55,34 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void initState() {
+    print('initstate');
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    // This is where you can initialize the resources needed by your app while
+    // the splash screen is displayed.  Remove the following example because
+    // delaying the user experience is a bad design practice!
+    // ignore_for_file: avoid_print
+    print('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 1...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('go!');
+    FlutterNativeSplash.remove();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Colors.black38,
+        foregroundColor: Colors.black,
       ),
       body: Center(
         child: Column(
@@ -70,6 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        // elevation: 10,
+        // clipBehavior: Clip.antiAlias,
         onPressed: () {
           _incrementCounter().then((value) {
             // print(value.departmentCode);
@@ -79,7 +110,25 @@ class _MyHomePageState extends State<MyHomePage> {
           // print(result.departmentCode);
         },
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        splashColor: Colors.black,
+        child: Container(
+          height: 70,
+          width: 70,
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: const BorderRadius.all(Radius.circular(50)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.redAccent.withOpacity(0.2),
+                spreadRadius: 3,
+                blurRadius: 3,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: const Icon(Icons.add),
+        ),
+        // child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
