@@ -13,100 +13,121 @@ class Menuler extends StatelessWidget {
         // padding: const EdgeInsets.all(8),
         // itemCount: entries.length,
         // itemBuilder: (BuildContext context, int index) {
-        children: const [
-          SizedBox(
+        children: [
+          const SizedBox(
             height: 20,
           ),
           ListTile(
-            title: Text(
+            title: const Text(
               'Ek Limit Talebi',
               style: TextStyle(color: Color(0xff3bbd00)),
             ),
             // subtitle: Text('Altyazılar'),
-            leading: FaIcon(
+            leading: const FaIcon(
               FontAwesomeIcons.batteryFull,
               size: 25,
               color: Color(0xff3bbd00),
             ),
-            trailing: Icon(Icons.arrow_right),
+            trailing: const Icon(Icons.arrow_right),
+            onTap: () {
+              debugPrint('Ek Limit Menüsü');
+            },
           ),
           ListTile(
-            title: Text(
+            title: const Text(
               'Tasarrufum',
               style: TextStyle(color: Color(0xff3bbd00)),
             ),
             // subtitle: Text('Altyazılar'),
-            leading: FaIcon(
+            leading: const FaIcon(
               FontAwesomeIcons.turkishLiraSign,
               size: 25,
               color: Color(0xff3bbd00),
             ),
-            trailing: Icon(Icons.arrow_right),
+            trailing: const Icon(Icons.arrow_right),
+            onTap: () {
+              debugPrint('Ek Limit Menüsü');
+            },
           ),
           ListTile(
-            title: Text(
+            title: const Text(
               'Aylık Dağılımım',
               style: TextStyle(color: Color(0xff3bbd00)),
             ),
             // subtitle: Text('Altyazılar'),
-            leading: FaIcon(
+            leading: const FaIcon(
               FontAwesomeIcons.chartPie,
               size: 25,
               color: Color(0xff3bbd00),
             ),
-            trailing: Icon(Icons.arrow_right),
+            trailing: const Icon(Icons.arrow_right),
+            onTap: () {
+              debugPrint('Ek Limit Menüsü');
+            },
           ),
           ListTile(
-            title: Text(
+            title: const Text(
               'Faturalarım',
               style: TextStyle(color: Color(0xff3bbd00)),
             ),
             // subtitle: Text('Altyazılar'),
-            leading: FaIcon(
+            leading: const FaIcon(
               FontAwesomeIcons.fileInvoice,
               size: 25,
               color: Color(0xff3bbd00),
             ),
-            trailing: Icon(Icons.arrow_right),
+            trailing: const Icon(Icons.arrow_right),
+            onTap: () {
+              debugPrint('Ek Limit Menüsü');
+            },
           ),
           ListTile(
-            title: Text(
+            title: const Text(
               'Ödeme Yap',
               style: TextStyle(color: Color(0xff3bbd00)),
             ),
             // subtitle: Text('Altyazılar'),
-            leading: FaIcon(
+            leading: const FaIcon(
               FontAwesomeIcons.creditCard,
               size: 25,
               color: Color(0xff3bbd00),
             ),
-            trailing: Icon(Icons.arrow_right),
+            trailing: const Icon(Icons.arrow_right),
+            onTap: () {
+              debugPrint('Ek Limit Menüsü');
+            },
           ),
           ListTile(
-            title: Text(
+            title: const Text(
               'Ödeme Hareketlerim',
               style: TextStyle(color: Color(0xff3bbd00)),
             ),
             // subtitle: Text('Altyazılar'),
-            leading: FaIcon(
+            leading: const FaIcon(
               FontAwesomeIcons.clipboardList,
               size: 25,
               color: Color(0xff3bbd00),
             ),
-            trailing: Icon(Icons.arrow_right),
+            trailing: const Icon(Icons.arrow_right),
+            onTap: () {
+              debugPrint('Ek Limit Menüsü');
+            },
           ),
           ListTile(
-            title: Text(
+            title: const Text(
               'Taleplerim',
               style: TextStyle(color: Color(0xff3bbd00)),
             ),
             // subtitle: Text('Altyazılar'),
-            leading: FaIcon(
+            leading: const FaIcon(
               FontAwesomeIcons.commentDots,
               size: 25,
               color: Color(0xff3bbd00),
             ),
-            trailing: Icon(Icons.arrow_right),
+            trailing: const Icon(Icons.arrow_right),
+            onTap: () {
+              debugPrint('Ek Limit Menüsü');
+            },
           ),
         ],
       ),

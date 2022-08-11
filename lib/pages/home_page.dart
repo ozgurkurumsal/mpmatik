@@ -1,9 +1,7 @@
 import 'dart:convert';
-import 'package:bottom_bar_page_transition/bottom_bar_page_transition.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mpmatik/pages/profile_page.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -123,14 +121,24 @@ class _HomePageState extends State<HomePage> {
       //     ],
       //   ),
       // ),
-      body: BottomBarPageTransition(
-        builder: (_, index) => menuler[index],
-        currentIndex: _page,
-        totalLength: 5,
-        transitionType: TransitionType.slide,
-        transitionDuration: const Duration(milliseconds: 200),
-        transitionCurve: Curves.ease,
-      ),
+      body: PageView(
+          //scrollDirection: Axis.vertical,
+          controller: controller,
+          children: const [Home(), Menuler(), Menuler(), Profile(), Menuler()],
+          onPageChanged: (value) {
+            setState(() {
+              _page = value;
+            });
+          }),
+
+      // BottomBarPageTransition(
+      //   builder: (_, index) => menuler[index],
+      //   currentIndex: _page,
+      //   totalLength: 5,
+      //   transitionType: TransitionType.slide,
+      //   transitionDuration: const Duration(milliseconds: 200),
+      //   transitionCurve: Curves.ease,
+      // ),
 
       /* PageView(
           //scrollDirection: Axis.vertical,
@@ -301,9 +309,12 @@ class _HomePageState extends State<HomePage> {
         animationCurve: Curves.easeInOut,
         animationDuration: const Duration(milliseconds: 600),
         onTap: (index) {
-          setState(() {
-            _page = index;
-          });
+          // setState(() {
+          //   _page = index;
+          // });
+          // controller.animateToPage(index,
+          //     duration: const Duration(milliseconds: 150),
+          //     curve: Curves.easeIn);
 
           /*  Navigator.push(
             context,
@@ -312,7 +323,7 @@ class _HomePageState extends State<HomePage> {
               child: Menuler(),
             ),
           ); */
-          // controller.jumpToPage(index);
+          controller.jumpToPage(index);
           //setState(() {});
           /* await Future.delayed(const Duration(milliseconds: 600));
 
