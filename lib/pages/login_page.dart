@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mpmatik/pages/password_input.dart';
@@ -120,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                                       const TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold))),
-                              onPressed: () {
+                              onPressed: () async {
                                 loginRequestModel.username =
                                     emailcontroller.text;
                                 loginRequestModel.password =
@@ -133,6 +134,11 @@ class _LoginPageState extends State<LoginPage> {
                                 });
 
                                 LoginService apiService = LoginService();
+                                await EasyLoading.show(
+                                  status: 'Lütfen Bekleyin...',
+                                  maskType: EasyLoadingMaskType.custom,
+                                );
+                                print('EasyLoading show');
                                 apiService
                                     .login(loginRequestModel)
                                     .then((value) {
@@ -152,6 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                                       //     content: Text("Login Successful"));
                                       // scaffoldKey.currentState!
                                       //     .showSnackBar(snackBar);
+                                      EasyLoading.dismiss();
                                       Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(

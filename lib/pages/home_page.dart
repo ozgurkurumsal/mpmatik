@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'package:bottom_bar_page_transition/bottom_bar_page_transition.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:mpmatik/pages/profile_page.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -19,17 +22,22 @@ class _HomePageState extends State<HomePage> {
   // int? _departmentCode;
   String? _cariUnvan;
   late final Map<String, dynamic> unvan;
-
+  bool isBottomClicked = false;
   List<Widget> menuler = const [
     Home(),
     Menuler(),
     Menuler(),
-    Menuler(),
+    Profile(),
     Menuler(),
   ];
 
-  int _page = 2;
+  int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
+  final controller = PageController(
+    initialPage: 0,
+    //keepPage: true,
+  );
 
   // void _onItemTapped(int index) {
   //   if (index == 2) {
@@ -115,7 +123,70 @@ class _HomePageState extends State<HomePage> {
       //     ],
       //   ),
       // ),
-      body: menuler[_page],
+      body: BottomBarPageTransition(
+        builder: (_, index) => menuler[index],
+        currentIndex: _page,
+        totalLength: 5,
+        transitionType: TransitionType.slide,
+        transitionDuration: const Duration(milliseconds: 200),
+        transitionCurve: Curves.ease,
+      ),
+
+      /* PageView(
+          //scrollDirection: Axis.vertical,
+          controller: controller,
+          children: const [Home(), Menuler(), Menuler(), Profile(), Menuler()],
+          onPageChanged: (value) {
+            setState(() {
+              _page = value;
+            }); */
+      /*  await Future.delayed(const Duration(seconds: 20), () {
+              final CurvedNavigationBarState? navBarState =
+                  _bottomNavigationKey.currentState;
+              navBarState?.setPage(value);
+            }); */
+
+      /*  setState(() {
+              _page = value;
+            });
+            print(isBottomClicked); */
+      /* if (!isBottomClicked) {
+              setState(() {
+                _page = value;
+              });
+            } else {
+              setState(() {
+                isBottomClicked = false;
+              });
+              return;
+            } */
+
+      /* await Future.delayed(const Duration(seconds: 2), () {
+              setState(() {
+                _page = value;
+              });
+            }); */
+
+      //setState(() {
+
+      /*   final CurvedNavigationBarState? navBarState =
+                _bottomNavigationKey.currentState;
+            navBarState?.setPage(value); */
+
+      //});
+      /* await Future.delayed(Duration(milliseconds: 600));
+            //setState(() {
+            final CurvedNavigationBarState? navBarState =
+                _bottomNavigationKey.currentState;
+            navBarState?.setPage(value); */
+      //_page = value;
+      //});
+      //}
+
+      //_page = value;
+      //),
+
+      //menuler[_page],
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // floatingActionButton: Align(
       //   alignment: const Alignment(0, 0.92),
@@ -209,7 +280,7 @@ class _HomePageState extends State<HomePage> {
       // ),
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
-        index: 2,
+        index: _page,
         height: 60.0,
         items: const [
           Icon(Icons.home, size: 30),
@@ -233,8 +304,30 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             _page = index;
           });
+
+          /*  Navigator.push(
+            context,
+            PageTransition(
+              type: PageTransitionType.leftToRight,
+              child: Menuler(),
+            ),
+          ); */
+          // controller.jumpToPage(index);
+          //setState(() {});
+          /* await Future.delayed(const Duration(milliseconds: 600));
+
+          controller.animateToPage(index,
+              duration: const Duration(milliseconds: 1000), */
+          //  curve: Curves.decelerate);
+
+          //setState(() {
+          //  _page = index;
+          //});
+          /* final CurvedNavigationBarState? navBarState =
+              _bottomNavigationKey.currentState;
+          navBarState?.setPage(index); */
         },
-        letIndexChange: (index) => true,
+        //letIndexChange: (index) => true,
       ),
       // bottomNavigationBar: Theme(
       //   data: Theme.of(context).copyWith(
