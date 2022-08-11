@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:mpmatik/pages/istasyon_page.dart';
 import 'package:mpmatik/pages/profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   bool isBottomClicked = false;
   List<Widget> menuler = const [
     Home(),
-    Menuler(),
+    Istasyon(),
     Menuler(),
     Profile(),
     Menuler(),
